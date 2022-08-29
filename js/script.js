@@ -40,6 +40,9 @@ const renderPokemon = async (pokemon) => {
         pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
 
         input.value = ' ';
+        
+        searchPokemon = data.id; //se o pokemon é o 25 e dou next vai para o 26.
+                                 //se não tivesse essa função iria para o 2
     }
     else{
         pokemonImage.style.display = 'none';
@@ -47,7 +50,6 @@ const renderPokemon = async (pokemon) => {
         pokemonNumber.innerHTML = '';
     }
 
-    
 }
 /*renderPokemon('25');*/
 /*renderPokemon('25');*/
@@ -62,12 +64,20 @@ form.addEventListener('submit', (event) => {
 });
 
 buttonPrev.addEventListener('click', () => {
-    alert('prev clicked')
+    //alert('prev clicked')
+
+    if(searchPokemon >1){
+        searchPokemon -= 1;
+        renderPokemon(searchPokemon);
+    }
+    
 });
 buttonNext.addEventListener('click', () => {
-    alert('next clicked')
+    //alert('next clicked')
+    searchPokemon += 1;
+    renderPokemon(searchPokemon);
 });
 
-renderPokemon(1);
+renderPokemon(searchPokemon);
 
 
